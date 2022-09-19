@@ -32,7 +32,7 @@ spec:
         image: gcr.io/google-samples/microservices-demo/loadgenerator:v0.2.0
         env:
         - name: FRONTEND_ADDR
-          value: "boutique.agilework.info"
+          value: "34.140.75.239"
         - name: USERS
           value: "100"
         resources:
