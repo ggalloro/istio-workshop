@@ -1,0 +1,14 @@
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: authorization-ingress
+  namespace: hipster
+spec:
+  selector:
+    matchLabels:
+      app: httpbin
+  action: ALLOW
+  rules:
+  - when:
+    - key: request.auth.claims[email]
+      values: ["michelangelo@galloro.net"]

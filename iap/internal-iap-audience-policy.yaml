@@ -1,0 +1,19 @@
+apiVersion: "security.istio.io/v1beta1"
+kind: "RequestAuthentication"
+metadata:
+  name: "internal-iap-audience-policy"
+  namespace: "hipster"
+spec:
+  selector:
+    matchLabels:
+      app: httpbin
+  jwtRules:
+  - issuer: "https://cloud.google.com/iap"
+    jwksUri: "https://www.gstatic.com/iap/verify/public_key-jwk"
+    audiences:
+    - hipster
+    fromHeaders:
+    - name: ingress-authorization
+      prefix: "Istio "
+    outputPayloadToHeader: "verified-jwt"
+    forwardOriginalToken: true

@@ -1,0 +1,14 @@
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: recommendationservice
+spec:
+  host: recommendationservice
+  subsets:
+  - name: production
+    labels:
+      version: production
+  - name: canary
+    labels:
+      version: canary
+
