@@ -16,16 +16,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: loadgenerator
+  name: loadgen-bank
 spec:
   selector:
     matchLabels:
-      app: loadgenerator
+      app: loadgen-bank
   replicas: 1
   template:
     metadata:
       labels:
-        app: loadgenerator
+        app: loadgen-bank
       annotations:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
     spec:
@@ -49,7 +49,7 @@ spec:
         image: gcr.io/bank-of-anthos-ci/loadgenerator:v0.5.7
         env:
         - name: FRONTEND_ADDR
-          value: "35.189.194.184"
+          value: "banking.agilework.info"
         - name: USERS
           value: "100"
         resources:
