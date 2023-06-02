@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1beta1
+kind: ServiceEntry
+metadata:
+  name: httpbin-virt
+spec:
+  hosts:
+  - httpbin.virt #'DUMMY' Name resolved by Istio DNS Proxy
+  addresses:
+  - 198.51.100.0 #'DUMMY' Address provided by DNS Proxy for the name
+  ports:
+  - number: 80
+    name: http
+    protocol: HTTP
+  resolution: DNS
+  location: MESH_EXTERNAL
+  endpoints:
+  - address: httpbin.org # External httpbin.org
+    ports:
+      http: 80
+  - address: httpbin.banking.svc.cluster.local # Internal deployment running inside the mesh
+    ports:
+      http: 80

@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: httpbin-int-ext
+spec:
+  hosts:
+  - httpbin.virt
+  http:
+  - route:
+    - destination:
+        host: httpbin.org
+        port:
+          number: 80
+      weight: 50
+    - destination:
+        host: httpbin.banking.svc.cluster.local
+        port:
+          number: 80
+      weight: 50
