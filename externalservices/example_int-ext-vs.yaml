@@ -1,14 +1,16 @@
 apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata:
-  name: httpbin-int-ext
+  name: example-int-ext
 spec:
   hosts:
-  - httpbin.virt
+  - example.virt
   http:
-  - route:
+  - rewrite:
+      authority: example.com  
+    route:
     - destination:
-        host: httpbin.org
+        host: example.com
         port:
           number: 80
       weight: 50

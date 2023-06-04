@@ -1,10 +1,10 @@
 apiVersion: networking.istio.io/v1beta1
 kind: ServiceEntry
 metadata:
-  name: httpbin-virt
+  name: example-virt
 spec:
   hosts:
-  - httpbin.virt #'DUMMY' Name resolved by Istio DNS Proxy
+  - example.virt #'DUMMY' Name resolved by Istio DNS Proxy
   addresses:
   - 198.51.100.0 #'DUMMY' Address provided by DNS Proxy for the name
   ports:
@@ -14,7 +14,7 @@ spec:
   resolution: DNS
   location: MESH_EXTERNAL
   endpoints:
-  - address: httpbin.org # External httpbin.org
+  - address: example.com # External example.com
     ports:
       http: 80
   - address: httpbin.meshed.svc.cluster.local # Internal deployment running inside the mesh
