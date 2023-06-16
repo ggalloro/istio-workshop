@@ -1,0 +1,9 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: IstioLocalNS
+metadata:
+  name: istio-local-ns
+spec:
+  match:
+    kinds:
+      - apiGroups: ["networking.istio.io"]
+        kinds: ["DestinationRule", "ServiceEntry", "VirtualService"]
