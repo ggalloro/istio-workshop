@@ -1,0 +1,67 @@
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: istiolocalns
+spec:
+  crd:
+    spec:
+      names:
+        kind: IstioLocalNS
+      validation:
+        legacySchema: true
+        openAPIV3Schema: {}
+  targets:
+  - rego: |
+      package asm.guardrails.istiolocalns
+      
+      violation[{"msg": msg}] {
+        obj := input.review.object
+        obj.kind == "DestinationRule"
+        spec := obj.spec
+        not spec.exportTo
+        msg := "spec.exportTo must be set"
+      }
+      
+      violation[{"msg": msg}] {
+        obj := input.review.object
+        obj.kind == "DestinationRule"
+        spec := obj.spec
+        exportTo := spec.exportTo
+        not (exportTo == ["."])
+        msg := "spec.exportTo must be set to the local namespace [.]"
+      }
+
+      violation[{"msg": msg}] {
+        obj := input.review.object
+        obj.kind == "ServiceEntry"
+        spec := obj.spec
+        not spec.exportTo
+        msg := "spec.exportTo must be set"
+      }
+      
+      violation[{"msg": msg}] {
+        obj := input.review.object
+        obj.kind == "ServiceEntry"
+        spec := obj.spec
+        exportTo := spec.exportTo
+        not (exportTo == ["."])
+        msg := "spec.exportTo must be set to the local namespace [.]"
+      }
+      
+      violation[{"msg": msg}] {
+        obj := input.review.object
+        obj.kind == "VirtualService"
+        spec := obj.spec
+        not spec.exportTo
+        msg := "spec.exportTo must be set"
+      }
+      
+      violation[{"msg": msg}] {
+        obj := input.review.object
+        obj.kind == "VirtualService"
+        spec := obj.spec
+        exportTo := spec.exportTo
+        not (exportTo == ["."])
+        msg := "spec.exportTo must be set to the local namespace [.]"
+      }
+    target: admission.k8s.gatekeeper.sh

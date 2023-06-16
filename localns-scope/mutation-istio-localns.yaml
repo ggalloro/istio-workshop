@@ -1,0 +1,13 @@
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: Assign
+metadata:
+  name: istio-localns
+spec:
+  applyTo:
+  - groups: ["networking.istio.io"]
+    kinds: ["DestinationRule", "ServiceEntry", "VirtualService"]
+    versions: ["v1beta1", "v1alpha3", "v1alpha1"]
+  location: "spec.exportTo"
+  parameters:
+    assign:
+      value: [.]
