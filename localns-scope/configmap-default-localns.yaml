@@ -4,11 +4,6 @@ data:
     defaultServiceExportTo: [.]
     defaultDestinationRuleExportTo: [.]
     defaultVirtualServiceExportTo: [.]
-    accessLogFile: /dev/stdout
-    defaultConfig:
-    # The following enables Cloud Tracing
-      tracing:
-        stackdriver: {}
 kind: ConfigMap
 metadata:
   name: istio-asm-managed
