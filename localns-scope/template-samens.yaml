@@ -1,18 +1,18 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  name: istiolocalns
+  name: istiosamens
 spec:
   crd:
     spec:
       names:
-        kind: IstioLocalNS
+        kind: IstioSamelNS
       validation:
         legacySchema: true
         openAPIV3Schema: {}
   targets:
   - rego: |
-      package asm.guardrails.istiolocalns
+      package asm.guardrails.istiosamens
       
       violation[{"msg": msg}] {
         obj := input.review.object
@@ -28,7 +28,7 @@ spec:
         spec := obj.spec
         exportTo := spec.exportTo
         not (exportTo == ["."])
-        msg := "spec.exportTo must be set to the local namespace [.]"
+        msg := "spec.exportTo must be set to same namespace [.]"
       }
 
       violation[{"msg": msg}] {
@@ -45,7 +45,7 @@ spec:
         spec := obj.spec
         exportTo := spec.exportTo
         not (exportTo == ["."])
-        msg := "spec.exportTo must be set to the local namespace [.]"
+        msg := "spec.exportTo must be set to same namespace [.]"
       }
       
       violation[{"msg": msg}] {
@@ -62,6 +62,6 @@ spec:
         spec := obj.spec
         exportTo := spec.exportTo
         not (exportTo == ["."])
-        msg := "spec.exportTo must be set to the local namespace [.]"
+        msg := "spec.exportTo must be set to same namespace [.]"
       }
     target: admission.k8s.gatekeeper.sh
