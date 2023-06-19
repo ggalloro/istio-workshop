@@ -6,7 +6,7 @@ spec:
   crd:
     spec:
       names:
-        kind: IstioSameNS
+        kind: IstioSamelNS
       validation:
         legacySchema: true
         openAPIV3Schema: {}
