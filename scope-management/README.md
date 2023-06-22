@@ -1,4 +1,4 @@
-# Manage the scope of Istio resources in a multitenant Kubernetes cluster 
+# Blog: Manage the scope of Istio resources in a multitenant Kubernetes cluster 
 
 
 # Introduction
@@ -235,7 +235,7 @@ kubectl -n app1 delete destinationrule httpbin.org
 # Centrally manage Istio resources scope
 
 
-## Option1: Change the default scope in Istio mesh config 
+## Option 1: Change the default scope in Istio mesh config 
 
 The first thing you can do is to change the default scope of the traffic management resources in the mesh configuration using the following [global mesh options](https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/):
 
@@ -464,7 +464,7 @@ kubectl -n app1 delete destinationrule httpbin.org
 
 
 
-## Option ~~3~~ 2+ Set an OPA Gatekeeper constraint to mutate the resources 
+## Option ~~3~~ 2+: Set an OPA Gatekeeper constraint to mutate the resources 
 
 In this section we will add, to the constraint we used above, an OPA Gatekeeper mutation named istio-same-ns available in [scope-management/mutation-istio-samens.yaml](https://github.com/ggalloro/istio-workshop/blob/main/scope-management/mutation-istio-samens.yaml) that will also directly mutate the resources at creation so they will not only be blocked if not compliant but modified to include exportTo: set to “.”.
 
