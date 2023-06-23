@@ -396,13 +396,7 @@ Let’s try with other resource manifests, available in the repository, with exp
 
 ```
 kubectl -n app1 apply -f scope-management/httpbin-ext-tlsorigin-allns.yaml
-```
 
-
-This attempt is blocked as well:
-
-
-```
 Error from server (Forbidden): error when creating "scope-management/httpbin-ext-tlsorigin-allns.yaml": admission webhook "validation.gatekeeper.sh" denied the request: [istio-same-ns] spec.exportTo must be set to same namespace [.]
 ```
 
