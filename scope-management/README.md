@@ -293,10 +293,7 @@ Events:  <none>
 
 If you’re not using ASM, follow the instruction for your platform to set [Global Mesh Options](https://istio.io/latest/docs/reference/config/istio.mesh.v1alpha1/), in Istio OSS you will probably use the istioctl install command. 
 
-Now let’s create again the resources in the app1 namespace, with no exportTo: field, as we did when we tested 
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: undefined internal link (link text: "the default Istio behavior"). Did you generate a TOC with blue links? </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
+Now let’s create again the resources in the app1 namespace, with no exportTo: field, as we did when we tested
 [the default Istio behavior](#heading=h.rp5rr21us3pf):
 
 
@@ -372,22 +369,12 @@ kubectl apply -f scope-management/constraint-samens.yaml
 ```
 
 
-After we have our constraint set up, let’s try to create a ServiceEntry resource with no exportTo: field set as we did when we tested 
-
-<p id="gdcalert2" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: undefined internal link (link text: "the default Istio behavior"). Did you generate a TOC with blue links? </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert3">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-[the default Istio behavior](#heading=h.rp5rr21us3pf):
+After we have our constraint set up, let’s try to create a ServiceEntry resource with no exportTo: field set as we did when we tested [the default Istio behavior](#heading=h.rp5rr21us3pf):
 
 
 ```
 kubectl -n app1 apply -f scope-management/httpbin-ext-tlsorigin.yaml
-```
 
-
-You will get an output similar to this:
-
-
-```
 Error from server (Forbidden): error when creating "scope-management/httpbin-ext-tlsorigin.yaml": admission webhook "validation.gatekeeper.sh" denied the request: [istio-same-ns] spec.exportTo must be set
 ```
 
