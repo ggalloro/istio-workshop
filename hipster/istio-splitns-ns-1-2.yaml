@@ -17,43 +17,13 @@
 # ----------------------------------------------------------
 
 # [START servicemesh_release_istio_manifests_microservices_demo]
----
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: frontend-gateway
-spec:
-  selector:
-    istio: ingressgateway # use Istio default gateway implementation
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*"
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: frontend-ingress
-spec:
-  hosts:
-  - "*"
-  gateways:
-  - frontend-gateway
-  http:
-  - route:
-    - destination:
-        host: frontend
-        port:
-          number: 80
----
 apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
   name: allow-egress-googleapis
 spec:
+  exportTo:
+  - "."  
   hosts:
   - "accounts.google.com" # Used to get token
   - "*.googleapis.com"
@@ -70,6 +40,8 @@ kind: ServiceEntry
 metadata:
   name: allow-egress-google-metadata
 spec:
+  exportTo:
+  - "."  
   hosts:
   - metadata.google.internal
   addresses:
@@ -81,18 +53,4 @@ spec:
   - number: 443
     name: https
     protocol: HTTPS
----
-apiVersion: networking.istio.io/v1alpha3
-kind: VirtualService
-metadata:
-  name: frontend
-spec:
-  hosts:
-  - "frontend.hipster.svc.cluster.local"
-  http:
-  - route:
-    - destination:
-        host: frontend
-        port:
-          number: 80
 # [END servicemesh_release_istio_manifests_microservices_demo]
