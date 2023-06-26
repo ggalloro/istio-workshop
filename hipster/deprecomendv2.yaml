@@ -25,7 +25,7 @@ spec:
           value: productcatalogservice:3550
         - name: ENABLE_PROFILER
           value: "0"
-        image: gcr.io/galloro-gke/recommendationservice:2items
+        image: recommendationservice:2items
         imagePullPolicy: Always
         livenessProbe:
           exec:
