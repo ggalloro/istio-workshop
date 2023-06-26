@@ -25,7 +25,7 @@ spec:
           value: productcatalogservice:3550
         - name: ENABLE_PROFILER
           value: "0"
-        image: recommendationservice:2items
+        image: europe-docker.pkg.dev/galloro-demos/cloudbuilds/recommendationservice:2items
         imagePullPolicy: Always
         livenessProbe:
           exec:
