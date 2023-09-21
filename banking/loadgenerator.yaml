@@ -49,12 +49,12 @@ spec:
         image: gcr.io/bank-of-anthos-ci/loadgenerator:v0.5.7
         env:
         - name: FRONTEND_ADDR
-          value: "banking.agilework.info"
+          value: "35.195.145.103"
         - name: USERS
-          value: "100"
+          value: "50"
         resources:
           requests:
-            cpu: 1
+            cpu: 2
             memory: 2Gi
           limits:
             memory: 4Gi
