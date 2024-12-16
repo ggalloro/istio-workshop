@@ -4,7 +4,7 @@ metadata:
   name: httpbin-virt
 spec:
   hosts:
-  - httpbin.virt #'DUMMY' Name resolved by Istio DNS Proxy
+  - httpbin.virt.local #'DUMMY' Name resolved by Istio DNS Proxy
   addresses:
   - 198.51.100.0 #'DUMMY' Address provided by DNS Proxy for the name
   ports:
